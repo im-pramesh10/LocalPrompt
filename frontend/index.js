@@ -1,14 +1,18 @@
 async function handleClick() {
     const prompt = document.getElementById('prompt').value
-    prompt && console.log(prompt)
-    const response = await fetch('http://localhost:8000/prompt', {
+    const spinner = document.getElementById('spinner')
+    spinner.classList.add('spinner')
+    const response = await fetch('http://localhost:11434/api/generate', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({prompt: prompt}),
+        body: JSON.stringify(
+            {"model": "phi", "prompt": prompt, "stream": false}
+        )
     })
     const data = await response.json()
-    console.log(data)
-    document.getElementById('response').textContent = data.message
+    spinner.classList.remove('spinner')
+    document.getElementById('response').textContent = data.response
 }
+
