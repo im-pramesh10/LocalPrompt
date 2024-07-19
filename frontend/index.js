@@ -8,11 +8,10 @@ async function handleClick() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(
-            {"model": "phi", "prompt": prompt, "stream": false}
+            {"model": "phi", "prompt": prompt, "stream": false, "system": "You should always respond with appropriate html tags. But DO NOT use head body or <html> tag"}
         )
     })
     const data = await response.json()
     spinner.classList.remove('spinner')
-    document.getElementById('response').textContent = data.response
+    document.getElementById('response').innerHTML = data.response
 }
-
