@@ -11,9 +11,10 @@
     <div class="container">
       <label id="label" class="label">Welcome To My AI App</label></br></br>
       <textarea id="prompt" name="prompt" placeholder="your prompt here..."></textarea></br></br>
-      <button id="send-button" onClick="handleClick()">Send</button></br></br>
+        <button id="send-button" onClick="handleClick()">Send</button></br></br>
       <div class="response-container-toolbar">
         <span class='response-toolbar-text'>Response Box-[Prompt Response]</span>
+        <div id="spinner"></div>
       </div>
       <div class="response-container" id="response-container">
         <p class="response" id="response">Your prompt's response will appear here...</p>
