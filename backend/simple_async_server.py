@@ -3,9 +3,8 @@ from aiohttp import web
 
 async def post_prompt(request):
     incoming_data = await request.json()
-    print(incoming_data)
     response_data = {
-        "message": "Hello, world!",
+        "message": incoming_data['prompt'],
     }
     return web.json_response(response_data)
 
