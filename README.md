@@ -50,8 +50,8 @@ pip install -r requirements.txt
 - Use the extension to serve index.html.
 - Start the backend server:
 
-### Activate the virtual environment.
-Run the following command:
+### For Backend
+Activate the virtual environment and run the following command:
 ```
 python simple_async_server.py
 ```
