@@ -54,7 +54,7 @@ python simple_async_server.py
 - Ensure Ollama is running in the background and the Phi model is pulled. This example uses the Phi model.
 
 ## Modifying for Other LLMs
-To connect the client-server setup with a different LLM using Ollama:
+To connect LocalPrompt setup with a different LLM using Ollama:
 - Set the OLLAMA_MODEL to different model in setting.py
 To use custom LLMs or your own LLM api
 - Set USE_CUSTOM_MODEL to True in settings.py file
