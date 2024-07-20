@@ -10,13 +10,13 @@ This project demonstrates a simple and lightweight client-server program for int
 - ollama installed in the system
 
 ## Installation
-1. Clone the Repository
+### Clone the Repository
 
 ```
 git clone https://github.com/im-pramesh10/LocalPrompt.git
 cd LocalPrompt/backend
 ```
-2. Create python virtual environment
+### Create python virtual environment
 ```
 python -m venv venv
 ```
@@ -29,7 +29,7 @@ or
 virtualenv venv
 ```
 
-3. Activate venv
+### Activate venv
 - For Windows
 ```
 .\venv\Scripts\activate
@@ -38,21 +38,21 @@ virtualenv venv
 ```
 source venv/bin/activate
 ```
-4. Install from requirements.txt
+### Install from requirements.txt
 ```
 pip install -r requirements.txt
 ```
 
 ## Usage
-1. Run the frontend using Live Server or Five Server VSCode extension:
+### Run the frontend using Live Server or Five Server VSCode extension:
 
 - Open the project folder in VSCode.
 - Use the extension to serve index.html.
 - Start the backend server:
 
-2. Activate the virtual environment.
+### Activate the virtual environment.
 Run the following command:
 ```
 python simple_async_server.py
 ```
-3. Ensure Ollama is running in the background and the Phi model is pulled. This example uses the Phi model.
+### Ensure Ollama is running in the background and the Phi model is pulled. This example uses the Phi model.
