@@ -1,3 +1,5 @@
+let loading = false; //loading state for prompt
+
 async function handleClick() {
     const prompt = document.getElementById('prompt').value
     const spinner = document.getElementById('spinner')
@@ -5,7 +7,12 @@ async function handleClick() {
         alert('Please enter a prompt')
         return
     }
+    if (loading) {
+        alert('Please wait for the previous request to finish')
+        return
+    }
     spinner.classList.add('spinner')
+    loading = true
     try {
         const response = await fetch('http://localhost:8000/prompt', {
             method: 'POST',
@@ -27,4 +34,5 @@ async function handleClick() {
         alert(error)
     }
     spinner.classList.remove('spinner')
+    loading = false
 }
