@@ -59,3 +59,6 @@ To connect the client-server setup with a different LLM using Ollama:
 To use custom LLMs or your own LLM api
 - Set USE_CUSTOM_MODEL to True in settings.py file
 - Write your code inside custom_model_api function inside api_call.py file
+
+> [!IMPORTANT]
+> Make sure to restart server after each changes.
