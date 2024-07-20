@@ -1,11 +1,15 @@
 import asyncio
 from aiohttp import web
-from api_call import api_call
+from api_call import ollama_api_call, custom_model_api
+from settings import USE_CUSTOM_MODEL
 
 
 async def post_prompt(request):
     incoming_data = await request.json()
-    response_data = await api_call(incoming_data["prompt"])
+    if USE_CUSTOM_MODEL:
+        response_data = await custom_model_api(incoming_data["prompt"])
+    else:
+        response_data = await ollama_api_call(incoming_data["prompt"])
     return web.json_response(response_data)
 
 
