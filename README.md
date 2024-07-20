@@ -54,21 +54,8 @@ python simple_async_server.py
 - Ensure Ollama is running in the background and the Phi model is pulled. This example uses the Phi model.
 
 ## Modifying for Other LLMs
-To connect the client-server setup with a different LLM or your own model's API, you can modify the api_call function inside the api_call.py file.
-
-The api_call function:
-```
-async def api_call(prompt):
-    async with aiohttp.ClientSession() as session:
-        async with session.post(
-            "http://localhost:11434/api/generate", json={"model": "phi", "prompt": prompt, "stream": False}
-        ) as response:
-            response_data = await response.json()
-            if response.status != 200:
-                return {
-                    'error': 'Failed to generate text. Status code: {}'.format(response.status),
-                    'response': response_data
-                }
-            return response_data
-
-```
+To connect the client-server setup with a different LLM using Ollama:
+- Set the OLLAMA_MODEL to different model in setting.py
+To use custom LLMs or your own LLM api
+- Set USE_CUSTOM_MODEL to True in settings.py file
+- Write your code inside custom_model_api function inside api_call.py file
