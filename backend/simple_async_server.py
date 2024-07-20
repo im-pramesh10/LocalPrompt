@@ -1,11 +1,10 @@
 import asyncio
 from aiohttp import web
+from api_call import api_call
 
 async def post_prompt(request):
-    incoming_data = await request.json()
-    response_data = {
-        "message": incoming_data['prompt'],
-    }
+    incoming_data = await request.json() 
+    response_data = await api_call(incoming_data['prompt'])
     return web.json_response(response_data)
 
 # Handle OPTIONS requests
