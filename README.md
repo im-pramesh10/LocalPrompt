@@ -1,7 +1,7 @@
 # LocalPrompt
 
 ## Description
-This project demonstrates a simple and lightweight client-server program for interfacing with local Language Model Machines (LLMs), using Ollama as an example. The frontend is built with basic HTML, CSS, and vanilla JavaScript, while the backend is an asynchronous web server created using asyncio and aiohttp.
+This project demonstrates a simple and lightweight client-server program for interfacing with local Language Model Machines (LLMs), using Ollama as an example. The frontend is built with basic HTML, CSS, and vanilla JavaScript, while the backend is an asynchronous web server created using asyncio and aiohttp in python.
 
 ![LocalPrompt Screenshot](readme-images/image.png)
 
