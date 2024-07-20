@@ -44,15 +44,10 @@ pip install -r requirements.txt
 ```
 
 ## Usage
-### Run the frontend using Live Server or Five Server VSCode extension:
-
-- Open the project folder in VSCode.
-- Use the extension to serve index.html.
-- Start the backend server:
-
-### For Backend
-Activate the virtual environment and run the following command:
+- cd into backend folder
+- Activate the virtual environment and run the following command:
 ```
 python simple_async_server.py
 ```
+- navigate to http://localhost:8000 to use the program
 ### Ensure Ollama is running in the background and the Phi model is pulled. This example uses the Phi model.
