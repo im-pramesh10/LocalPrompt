@@ -3,6 +3,8 @@
 ## Description
 This project demonstrates a simple and lightweight client-server program for interfacing with local Language Model Machines (LLMs), using Ollama as an example. The frontend is built with basic HTML, CSS, and vanilla JavaScript, while the backend is an asynchronous web server created using asyncio and aiohttp.
 
+![LocalPrompt Screenshot](readme-images/image.png)
+
 ## Prerequisites
 - Python 3.7+
 - aiohttp library
