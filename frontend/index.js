@@ -1,9 +1,17 @@
-let loading = false; //loading state for prompt
+let loading = false; // loading state for prompt
 
+function handleEnter(e) {
+    if (e.keyCode === 13 && e.shiftKey === false) {
+        e.preventDefault()
+        const prompt = document.getElementById('prompt')
+        prompt.blur()
+        handleClick()
+    }
+}
 async function handleClick() {
     const prompt = document.getElementById('prompt').value
     const spinner = document.getElementById('spinner')
-    if (!prompt) {
+    if (! prompt) {
         alert('Please enter a prompt')
         return
     }
