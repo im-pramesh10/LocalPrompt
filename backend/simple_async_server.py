@@ -2,10 +2,12 @@ import asyncio
 from aiohttp import web
 from api_call import api_call
 
+
 async def post_prompt(request):
-    incoming_data = await request.json() 
-    response_data = await api_call(incoming_data['prompt'])
+    incoming_data = await request.json()
+    response_data = await api_call(incoming_data["prompt"])
     return web.json_response(response_data)
+
 
 # Handle OPTIONS requests
 async def handle_options(request):
@@ -17,14 +19,16 @@ async def handle_options(request):
         }
     )
 
+
 # Middleware to add CORS headers to every response
 @web.middleware
 async def cors_middleware(request, handler):
     if request.method == "OPTIONS":
         return await handle_options(request)
-    
+
     response = await handler(request)
     return await add_cors_headers(request, response)
+
 
 # Add CORS headers to response
 async def add_cors_headers(request, response):
@@ -33,9 +37,16 @@ async def add_cors_headers(request, response):
     response.headers["Access-Control-Allow-Headers"] = "Content-Type"
     return response
 
+
+async def serve_html(request):
+    return web.FileResponse("../frontend/index.html")
+
 # Create the app and add routes
 app = web.Application(middlewares=[cors_middleware])
+app.router.add_static('/static/', path='../frontend', name='static')
+
 app.add_routes([web.post("/prompt", post_prompt)])
+app.add_routes([web.get("/", serve_html)])
 
 if __name__ == "__main__":
     web.run_app(app, port=8000)
