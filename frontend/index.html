@@ -10,7 +10,7 @@
   <body>
     <div class="container">
       <label id="label" class="label">LocalPrompt</label></br></br>
-      <textarea id="prompt" name="prompt" placeholder="your prompt here..."></textarea></br></br>
+      <textarea id="prompt" name="prompt" placeholder="your prompt here..." onKeyPress="handleEnter(event)"></textarea></br></br>
         <button id="send-button" onClick="handleClick()">Send 
           <div id="spinner"></div>
         </button>
