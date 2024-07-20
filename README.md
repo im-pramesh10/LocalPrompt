@@ -56,6 +56,7 @@ python simple_async_server.py
 ## Modifying for Other LLMs
 To connect LocalPrompt setup with a different LLM using Ollama:
 - Set the OLLAMA_MODEL to different model in setting.py
+
 To use custom LLMs or your own LLM api
 - Set USE_CUSTOM_MODEL to True in settings.py file
 - Write your code inside custom_model_api function inside api_call.py file
