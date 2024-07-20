@@ -3,13 +3,13 @@ async function handleClick() {
     const spinner = document.getElementById('spinner')
     spinner.classList.add('spinner')
     try {
-        const response = await fetch('http://localhost:11434/api/generate', {
+        const response = await fetch('http://localhost:8000/prompt', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(
-                {"model": "phi", "prompt": prompt, "stream": false}
+                {"prompt": prompt}
             )
         })
         const data = await response.json()
@@ -20,7 +20,6 @@ async function handleClick() {
         }
 
     } catch (error) {
-        console.log(error)
         alert(error)
     }
     spinner.classList.remove('spinner')
