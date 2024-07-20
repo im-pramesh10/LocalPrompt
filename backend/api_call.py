@@ -1,6 +1,5 @@
 import aiohttp
 import asyncio
-import json
 
 
 async def api_call(prompt):
