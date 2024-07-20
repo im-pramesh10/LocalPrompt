@@ -8,7 +8,6 @@ async function handleClick() {
         return
     }
     if (loading) {
-        alert('Please wait for the previous request to finish')
         return
     }
     spinner.classList.add('spinner')
