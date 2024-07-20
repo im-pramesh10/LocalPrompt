@@ -1,6 +1,10 @@
 async function handleClick() {
     const prompt = document.getElementById('prompt').value
     const spinner = document.getElementById('spinner')
+    if (!prompt) {
+        alert('Please enter a prompt')
+        return
+    }
     spinner.classList.add('spinner')
     try {
         const response = await fetch('http://localhost:8000/prompt', {
