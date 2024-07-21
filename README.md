@@ -87,5 +87,5 @@ To use custom LLMs or your own LLM api
 {'response':'You need to set up your custom model function inside api_call.py file inside backend folder'}
 ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > Make sure to restart server after each changes.
