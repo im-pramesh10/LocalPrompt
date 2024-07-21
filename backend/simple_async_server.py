@@ -41,16 +41,18 @@ async def add_cors_headers(request, response):
     response.headers["Access-Control-Allow-Headers"] = "Content-Type"
     return response
 
-
 async def serve_html(request):
     return web.FileResponse("../frontend/index.html")
+
+async def serve_chat(request):
+    return web.FileResponse("../frontend/chat/chat.html")
 
 # Create the app and add routes
 app = web.Application(middlewares=[cors_middleware])
 app.router.add_static('/static/', path='../frontend', name='static')
 
 app.add_routes([web.post("/prompt", post_prompt)])
-app.add_routes([web.get("/", serve_html)])
+app.add_routes([web.get("/", serve_html), web.get("/chat", serve_chat)])
 
 if __name__ == "__main__":
     web.run_app(app, port=8000)
