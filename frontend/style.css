@@ -1,4 +1,5 @@
-body, html{
+body,
+html {
     background-color: rgb(12, 12, 12);
     color: white;
     display: flex;
@@ -6,7 +7,7 @@ body, html{
     align-items: center;
     height: 100%;
     width: 100%;
-    font-family:'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .container {
@@ -49,7 +50,7 @@ body, html{
     cursor: pointer;
 }
 .response-container {
-    border: white 2px solid;
+    /* border: white 0.5px solid; */
     height: 14rem;
     resize: vertical;
     overflow-y: auto;
@@ -63,7 +64,8 @@ body, html{
     color: black;
     text-align: left;
 }
-.response-toolbar-text, .response {
+.response-toolbar-text,
+.response {
     padding-left: 0.5rem;
     color: black;
     font-weight: bolder;
@@ -75,17 +77,42 @@ body, html{
 }
 .spinner {
     display: inline-block;
-    border: 0.3rem solid white; 
+    border: 0.3rem solid white;
     border-top: 0.3rem solid #000000;
     border-radius: 50%;
     width: 0.5rem;
     height: 0.5rem;
     animation: spin 2s linear infinite;
 }
+header {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    /* background-color: #002280; */
+    width: 100%;
+    height: 3rem;
+}
+.nav-button-class,
+.active-nav-button {
+    color: white;
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+    text-decoration: none;
+}
 
+.active-nav-button {
+    color: #15ff00;
+    font-weight: bolder;
+}
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @media screen and (max-width: 768px) {
