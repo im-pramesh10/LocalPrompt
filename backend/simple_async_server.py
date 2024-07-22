@@ -1,6 +1,6 @@
 import asyncio
 from aiohttp import web
-from api_call import ollama_api_call, custom_model_api
+from api_call import ollama_api_call, custom_model_api, ollama_chat_api
 from settings import USE_CUSTOM_MODEL
 
 
@@ -12,6 +12,10 @@ async def post_prompt(request):
         response_data = await ollama_api_call(incoming_data["prompt"])
     return web.json_response(response_data)
 
+async def post_chat(request):
+    incoming_data = await request.json()
+    response_data = await ollama_chat_api(incoming_data["messages"])
+    return web.json_response(response_data)
 
 # Handle OPTIONS requests
 async def handle_options(request):
@@ -51,7 +55,7 @@ async def serve_chat(request):
 app = web.Application(middlewares=[cors_middleware])
 app.router.add_static('/static/', path='../frontend', name='static')
 
-app.add_routes([web.post("/prompt", post_prompt)])
+app.add_routes([web.post("/prompt", post_prompt), web.post("/chat", post_chat)])
 app.add_routes([web.get("/", serve_html), web.get("/chat", serve_chat)])
 
 if __name__ == "__main__":
