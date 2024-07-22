@@ -14,7 +14,6 @@ html {
     margin: auto;
     width: 600px;
     height: 90%;
-    text-align: center;
     /* border: 1px solid red */
 }
 #messages-list {
@@ -22,6 +21,9 @@ html {
     width: 100%;
     height: 80%;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    padding-bottom: 0.5rem;
 }
 #message-box {
     /* border: 1px solid green; */
@@ -64,6 +66,27 @@ html {
 }
 #send-button:hover {
     background-color: #c0a166;
+}
+.message-bubble-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.message-bubble {
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 0.4rem;
+    color: white;
+    width: fit-content;
+    max-width: 60%;
+    word-wrap: break-word;
+    background-color: #2a2558;
+}
+.my-message-bubble {
+    background-color: #272727;
+}
+.my-message-bubble-container {
+    flex-direction: row-reverse;
 }
 .label {
     color: rgb(255, 230, 0);
