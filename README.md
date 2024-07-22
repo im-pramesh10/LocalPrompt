@@ -4,7 +4,7 @@
 
 This project demonstrates a simple and lightweight client-server program for interfacing with Large Language Models (LLMs), using Ollama as an example. The frontend is built with basic HTML, CSS, and vanilla JavaScript, while the backend is an asynchronous web server created using asyncio and aiohttp in python.
 
-![LocalPrompt Screenshot](readme-images/image.png)
+![LocalPrompt Screenshot](readme-images/demo.gif)
 
 ## Prerequisites
 
@@ -72,7 +72,7 @@ python simple_async_server.py
 - Ensure Ollama is running in the background and the Phi model is pulled. This example uses the Phi model.
 
 ## Modifying for Other LLMs
-
+### For single prompt
 To connect LocalPrompt setup with a different LLM using Ollama:
 
 - Set the OLLAMA_MODEL to different model in setting.py
