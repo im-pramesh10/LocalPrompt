@@ -12,6 +12,7 @@ function handleClick() {
         return
     }
     addMessage(message, true) // myMessage = true
+    getResponse()
 }
 
 function addMessage(message, myMessage) {
@@ -28,4 +29,9 @@ function addMessage(message, myMessage) {
     messagesList.insertBefore(messageBubble, messagesList.firstChild)
     document.getElementById('message').value = ''
     document.getElementById('message').focus()
+}
+
+function getResponse() {
+    const message = "WIP feature. Please try again later."
+    addMessage(message, false) // myMessage = false
 }
