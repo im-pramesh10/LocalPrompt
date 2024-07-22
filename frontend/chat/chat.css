@@ -60,6 +60,10 @@ html {
     border: none;
     outline: none;
     cursor: pointer;
+    transition: background-color 0.5s ease-in-out;
+}
+#send-button:hover {
+    background-color: #c0a166;
 }
 .label {
     color: rgb(255, 230, 0);
@@ -117,11 +121,15 @@ header {
     font-size: 1.5rem;
     margin: 0 0.5rem;
     text-decoration: none;
+    transition: color 0.4s ease-in-out;
 }
 
 .active-nav-button {
     color: #15ff00;
     font-weight: bolder;
+}
+.nav-button-class:hover {
+    color: #15ff00;
 }
 @keyframes spin {
     0% {
