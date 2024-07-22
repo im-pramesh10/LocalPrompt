@@ -6,8 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>LocalPrompt</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/scrollbar.css">
   </head>
   <body>
+    <header>
+      <nav>
+          <a class="active-nav-button" href="/">Home</a>
+          <a class="nav-button-class" href="/chat">Chat</a>
+      </nav>
+    </header>
     <div class="container">
       <label id="label" class="label">LocalPrompt</label></br></br>
       <textarea id="prompt" name="prompt" placeholder="your prompt here..." onKeyPress="handleEnter(event)"></textarea></br></br>
