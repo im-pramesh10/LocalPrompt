@@ -9,7 +9,6 @@ function handleEnter(e) {
 function handleClick() {
     const message = document.getElementById('message').value
     if (! message) {
-        alert('Please enter a message')
         return
     }
     showMessage(message, true)
