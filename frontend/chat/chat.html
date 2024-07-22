@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>LocalPrompt</title>
     <link rel="stylesheet" href="/static/chat/chat.css">
+    <link rel="stylesheet" href="/static/scrollbar.css">
   </head>
   <body>
     <header>
@@ -27,8 +28,8 @@
             </div>
         </div>
         <div id="message-box">
-            <textarea id="message" name="message" placeholder="Enter your message..."></textarea>
-            <button id="send-button">
+            <textarea id="message" name="message" placeholder="Enter your message..." onKeyPress="handleEnter(event)"></textarea>
+            <button id="send-button" onClick="handleClick()">
                 <img alt="button icon" src="/static/chat/icons/send.png" width="15px" height="15px"/>
             </button>
         </div>
