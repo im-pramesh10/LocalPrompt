@@ -11,10 +11,10 @@ function handleClick() {
     if (! message) {
         return
     }
-    showMessage(message, true) // myMessage = true
+    addMessage(message, true) // myMessage = true
 }
 
-function showMessage(message, myMessage) {
+function addMessage(message, myMessage) {
     const messageBubble = document.createElement('div')
     messageBubble.classList.add('message-bubble-container')
     if (myMessage) {
