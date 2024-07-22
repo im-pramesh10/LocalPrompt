@@ -11,7 +11,7 @@ function handleClick() {
     if (! message) {
         return
     }
-    showMessage(message, true)
+    showMessage(message, true) // myMessage = true
 }
 
 function showMessage(message, myMessage) {
