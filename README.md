@@ -72,7 +72,7 @@ python simple_async_server.py
 - Ensure Ollama is running in the background and the Phi model is pulled. This example uses the Phi model.
 
 ## Modifying for Other LLMs
-
+### For single prompt
 To connect LocalPrompt setup with a different LLM using Ollama:
 
 - Set the OLLAMA_MODEL to different model in setting.py
