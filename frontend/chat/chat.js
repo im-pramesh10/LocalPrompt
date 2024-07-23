@@ -57,7 +57,7 @@ function addMessage(message, myMessage) {
 
 async function getResponse(conversation_history) {
     try {
-        const response = await fetch('http://localhost:8000/chat', {
+        const response = await fetch('/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

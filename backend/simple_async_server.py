@@ -1,7 +1,7 @@
 import asyncio
 from aiohttp import web
 from api_call import ollama_api_call, custom_model_api, ollama_chat_api
-from settings import USE_CUSTOM_MODEL
+from settings import USE_CUSTOM_MODEL, DEFAULT_PORT
 
 
 async def post_prompt(request):
@@ -59,4 +59,4 @@ app.add_routes([web.post("/prompt", post_prompt), web.post("/chat", post_chat)])
 app.add_routes([web.get("/", serve_html), web.get("/chat", serve_chat)])
 
 if __name__ == "__main__":
-    web.run_app(app, port=8000)
+    web.run_app(app, port=DEFAULT_PORT)

@@ -21,7 +21,7 @@ async function handleClick() {
     spinner.classList.add('spinner')
     loading = true
     try {
-        const response = await fetch('http://localhost:8000/prompt', {
+        const response = await fetch('/prompt', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
