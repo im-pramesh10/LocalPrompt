@@ -46,6 +46,7 @@
     font-weight: bolder;
 }
 .response {
+    white-space: pre-wrap;
     word-wrap: break-word;
     color: #dfdfdf;
     font-weight: lighter;

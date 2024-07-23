@@ -57,6 +57,7 @@
     width: fit-content;
     max-width: 90%;
     word-wrap: break-word;
+    white-space: pre-wrap; /* Preserve whitespace and newlines */
     /* background-color: #2b2b2b; */
 }
 .my-message-bubble {

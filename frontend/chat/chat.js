@@ -45,9 +45,9 @@ function addMessage(message, myMessage) {
     messageBubble.classList.add('message-bubble-container')
     if (myMessage) {
         messageBubble.classList.add('my-message-bubble-container')
-        messageBubble.innerHTML = `<p class="message-bubble my-message-bubble">${message}</p>`
+        messageBubble.innerHTML = `<div class="message-bubble my-message-bubble">${message}</div>`
     } else {
-        messageBubble.innerHTML = `<p class="message-bubble">${message}</p>`
+        messageBubble.innerHTML = `<div class="message-bubble">${message}</div>`
     }
     const messagesList = document.getElementById('messages-list')
     messagesList.insertBefore(messageBubble, messagesList.firstChild)
