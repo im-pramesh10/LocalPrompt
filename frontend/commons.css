@@ -33,6 +33,7 @@ html {
     height: 100%;
     width: 100%;
     font-family: 'Courier New', Courier, monospace;
+    position: relative;
 }
 textarea {
     background-color: #2f2f2f;
@@ -85,6 +86,7 @@ header {
     padding: 5px;
     background-color: #2f2f2f;
     width: fit-content;
+    /* display: none; */
 }
 input[type="radio"] {    
    accent-color: rgb(0, 0, 0);
@@ -96,7 +98,8 @@ input[type="radio"] {
     /* padding: 5px;
     background-color: #2f2f2f; */
     /* width: fit-content; */
-    margin-left: 2rem; 
+    margin-left: 2rem;
+    /* display: none; */
 }
 select {
     background-color: #2f2f2f;
@@ -109,6 +112,38 @@ select {
     height: 30px; 
     width: fit-content ; 
     box-sizing: border-box; 
+}
+button {
+    background-color: #292828;
+    color: rgb(216, 214, 214);
+    font-size: 14px;
+    border-radius: 10px;
+    padding: 5px;
+    border: none;
+    outline: none;
+    height: 30px;
+    width: fit-content;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+button:hover {
+    background-color: #0a0a0a;
+}
+.hidden-radio-select {
+    display: none;
+    /* display: flex; */
+    position: absolute;
+    /* flex-direction: column; */
+    background-color: #4b4b4bcb;
+    justify-content:center;
+    align-items: center;
+    width: fit-content;
+    height: 20rem;
+    padding: 0.8rem;
+    border-radius: 20px;
+    top:0;
+    right:0;
+    z-index: 1;
 }
 .header-item {
     flex: 1;
@@ -142,6 +177,24 @@ select {
     color: #ffffff;
     font-weight: bolder;
 }
+.large-screen-last-header {
+    display: flex;
+}
+.small-screen-last-header {
+    display: none;
+    cursor: pointer;
+    background-color: #464545;
+    padding: 0.2rem;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.4s ease-in-out;
+}
+.small-screen-last-header:hover {
+    background-color: #2f2f2f;
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -150,3 +203,17 @@ select {
         transform: rotate(360deg);
     }
 }
+
+@media screen and (max-width: 1280px) {
+    .large-screen-last-header {
+        display: none;
+    }
+    .small-screen-last-header {
+        display: block;
+    }
+}
+/* @media screen and (min-width: 1280px) {
+    .hidden-radio-select {
+        display: none;
+    }
+} */
