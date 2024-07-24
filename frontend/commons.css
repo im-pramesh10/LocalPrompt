@@ -134,13 +134,13 @@ button:hover {
     /* display: flex; */
     position: absolute;
     /* flex-direction: column; */
-    background-color: #4b4b4bcb;
+    background-color: #3f3f3f;
     justify-content:center;
     align-items: center;
     width: fit-content;
-    height: 20rem;
+    height: 7rem;
     padding: 0.8rem;
-    border-radius: 20px;
+    border-radius: 10px;
     top:0;
     right:0;
     z-index: 1;
