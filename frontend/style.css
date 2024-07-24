@@ -1,4 +1,4 @@
-.container {
+.middle-container {
     margin: auto;
     width: 600px;
     text-align: center;
@@ -52,7 +52,7 @@
     font-weight: lighter;
 }
 @media screen and (max-width: 768px) {
-    .container {
+    .middle-container {
         width: 90%; /* Adjust container width for smaller screens */
     }
 }

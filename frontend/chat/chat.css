@@ -1,4 +1,4 @@
-.container {
+.middle-container {
     margin: auto;
     width: 800px;
     height: 90%;
@@ -68,7 +68,7 @@
     flex-direction: row-reverse;
 }
 @media screen and (max-width: 900px) {
-    .container {
+    .middle-container {
         width: 90%; /* Adjust container width for smaller screens */
     }
 }
