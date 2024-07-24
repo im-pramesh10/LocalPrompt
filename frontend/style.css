@@ -3,12 +3,6 @@
     width: 600px;
     text-align: center;
 }
-
-.label {
-    color: white;
-    font-size: larger;
-    font-weight: bold;
-}
 #send-button {
     background-color: #4e4e4e;
     color: rgb(216, 214, 214);

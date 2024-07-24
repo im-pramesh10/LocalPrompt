@@ -10,14 +10,15 @@
   </head>
   <body>
     <header>
-      <nav>
+      <label id="label" class="label header-item">LocalPrompt</label></br></br>
+      <nav class="header-item">
           <a class="active-nav-button" href="/">Home</a>
           <a class="nav-button-class" href="/chat">Chat</a>
       </nav>
+      <span class="header-item">Hahahahahahaha</span>
     </header>
     <div class="content">
     <div class="middle-container">
-      <label id="label" class="label">LocalPrompt</label></br></br>
       <textarea id="prompt" name="prompt" placeholder="your prompt here..." onKeyPress="handleEnter(event)"></textarea></br></br>
         <button id="send-button" onClick="handleClick()">Send 
           <div id="spinner"></div>
