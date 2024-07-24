@@ -15,7 +15,21 @@
           <a class="active-nav-button" href="/">Home</a>
           <a class="nav-button-class" href="/chat">Chat</a>
       </nav>
-      <span class="header-item">Hahahahahahaha</span>
+      <div class="header-item">
+        <div class="using-radio-container">
+          <label><input type="radio" name="using" value="ollama" checked>Ollama</label>
+          <label><input type="radio" name="using" value="ollama">Groq</label>
+          <label><input type="radio" name="using" value="ollama">Custom</label>
+        </div>
+        <div class="model-select-container">
+          <select id="models" name="models">
+            <!--TODO: Fetch data from url and populate it here-->
+            <option value="1">llama3.1 80b</option>
+            <option value="2">phi2:latest</option>
+            <option value="3">mixtral-dolphin</option>
+        </select>
+        </div>
+      </div>
     </header>
     <div class="content">
     <div class="middle-container">
