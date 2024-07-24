@@ -16,7 +16,7 @@
           <a class="active-nav-button" href="/chat">Chat</a>
       </nav>
       <div class="header-item">
-        <div class='large-screen-last-header'>
+        <div id="radio-select-content" class='large-screen-last-header'>
         <div class="using-radio-container">
           <label><input type="radio" name="using" value="ollama" checked>Ollama</label>
           <label><input type="radio" name="using" value="ollama">Groq</label>
@@ -36,20 +36,8 @@
     </header>
     <div class="hidden-radio-select">
       <div style="display: flex; position: relative; height: 100%; justify-content: center; align-items: center"> 
-      <div style="display: flex">
-      <div class="using-radio-container">
-        <label><input type="radio" name="using" value="ollama" checked>Ollama</label>
-        <label><input type="radio" name="using" value="ollama">Groq</label>
-        <label><input type="radio" name="using" value="ollama">Custom</label>
-      </div>
-      <div class="model-select-container">
-        <select id="models" name="models">
-          <!--TODO: Fetch data from url and populate it here-->
-          <option value="1">llama3.1 80b</option>
-          <option value="2">phi2:latest</option>
-          <option value="3">mixtral-dolphin</option>
-      </select>
-        </div>
+      <div id='hidden-radio-select-content' style="display: flex">
+        
       </div>
       <button id="expand-ok-button" style="position: absolute; bottom: 0" onClick="closeModal(event)">Ok</button>
     </div>
