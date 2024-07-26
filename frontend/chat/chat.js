@@ -1,3 +1,10 @@
+// chat.js
+import { expand, closeModal } from '../expand.js';
+import HeaderComponent from '../webComponents/header.js';
+
+// Register the custom component
+customElements.define('header-component', HeaderComponent);
+
 let conversation_history = [
     // saved in this format and sent to ollama models to give them context
     // {
@@ -17,42 +24,43 @@ let conversation_history = [
 let loading = false; // loading state for chat
 function handleEnter(e) {
     if (e.keyCode === 13 && e.shiftKey === false) {
-        e.preventDefault()
-        handleClick()
+        e.preventDefault();
+        handleClick();
     }
 }
+
 async function handleClick() {
-    const message = document.getElementById('message').value
-    const spinner = document.getElementById('spinner')
-    if (! message) {
-        return
+    const message = document.getElementById('message').value;
+    const spinner = document.getElementById('spinner');
+    if (!message) {
+        return;
     }
     if (loading) {
-        return
+        return;
     }
-    addMessage(message, true) // myMessage = true
-    conversation_history.push({"role": "user", "content": message})
-    spinner.classList.add('spinner')
-    loading = true
-    const api_response = await getResponse(conversation_history)
-    conversation_history.push({"role": "assistant", "content": api_response})
-    loading = false
-    spinner.classList.remove('spinner')
+    addMessage(message, true); // myMessage = true
+    conversation_history.push({ "role": "user", "content": message });
+    spinner.classList.add('spinner');
+    loading = true;
+    const api_response = await getResponse(conversation_history);
+    conversation_history.push({ "role": "assistant", "content": api_response });
+    loading = false;
+    spinner.classList.remove('spinner');
 }
 
 function addMessage(message, myMessage) {
-    const messageBubble = document.createElement('div')
-    messageBubble.classList.add('message-bubble-container')
+    const messageBubble = document.createElement('div');
+    messageBubble.classList.add('message-bubble-container');
     if (myMessage) {
-        messageBubble.classList.add('my-message-bubble-container')
-        messageBubble.innerHTML = `<div class="message-bubble my-message-bubble">${message}</div>`
+        messageBubble.classList.add('my-message-bubble-container');
+        messageBubble.innerHTML = `<div class="message-bubble my-message-bubble">${message}</div>`;
     } else {
-        messageBubble.innerHTML = `<div class="message-bubble">${message}</div>`
+        messageBubble.innerHTML = `<div class="message-bubble">${message}</div>`;
     }
-    const messagesList = document.getElementById('messages-list')
-    messagesList.insertBefore(messageBubble, messagesList.firstChild)
-    document.getElementById('message').value = ''
-    document.getElementById('message').focus()
+    const messagesList = document.getElementById('messages-list');
+    messagesList.insertBefore(messageBubble, messagesList.firstChild);
+    document.getElementById('message').value = '';
+    document.getElementById('message').focus();
 }
 
 async function getResponse(conversation_history) {
@@ -62,21 +70,26 @@ async function getResponse(conversation_history) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(
-                {"messages": conversation_history}
-            )
-        })
-        const data = await response.json()
+            body: JSON.stringify({ "messages": conversation_history })
+        });
+        const data = await response.json();
         if (data.error) {
-            alert(data.error)
-            addMessage("Something Went Wrong with ollama model. Make sure it is running and try again", false) // myMessage = false
+            alert(data.error);
+            addMessage("Something Went Wrong with ollama model. Make sure it is running and try again", false); // myMessage = false
         } else {
-            addMessage(data ?. message ?. content, false) // myMessage = false
-            return data ?. message ?. content
+            addMessage(data?.message?.content, false); // myMessage = false
+            return data?.message?.content;
         }
 
     } catch (error) {
-        alert(error)
-        addMessage("Something Went Wrong with ollama model. Make sure it is running and try again", false) // myMessage = false
+        alert(error);
+        addMessage("Something Went Wrong with ollama model. Make sure it is running and try again", false); // myMessage = false
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('message').addEventListener('keypress', handleEnter);
+    document.getElementById('send-button').addEventListener('click', handleClick);
+    document.getElementById('expand-ok-button').addEventListener('click', closeModal);
+    document.getElementById('expand-button').addEventListener('click', expand); // inside header component
+});

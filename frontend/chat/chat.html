@@ -12,10 +12,8 @@
     <header-component style="width: 100%"></header-component>
     <div class="hidden-radio-select">
       <div style="display: flex; position: relative; height: 100%; justify-content: center; align-items: center"> 
-      <div id='hidden-radio-select-content' style="display: flex">
-        
-      </div>
-      <button id="expand-ok-button" style="position: absolute; bottom: 0" onClick="closeModal(event)">Ok</button>
+      <div id='hidden-radio-select-content' style="display: flex"></div>
+      <button id="expand-ok-button" style="position: absolute; bottom: 0">Ok</button>
     </div>
     </div>
     <div class="content">
@@ -27,9 +25,8 @@
             id="message"
             name="message"
             placeholder="Enter your message..."
-            onKeyPress="handleEnter(event)"
           ></textarea>
-          <button id="send-button" onClick="handleClick()">
+          <button id="send-button">
             <img
               alt="button icon"
               src="/static/chat/icons/send.png"
@@ -40,8 +37,6 @@
         </div>
       </div>
     </div>
-	  <script src="/static/webComponents/header.js"></script>
-    <script src="/static/expand.js"></script>
-    <script src="/static/chat/chat.js"></script>
+    <script type="module" src="/static/chat/chat.js"></script>
   </body>
 </html>

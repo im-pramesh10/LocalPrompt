@@ -1,4 +1,4 @@
-function expand() {
+export function expand() {
     const hiddenElement = document.querySelector('.hidden-radio-select');
     const hiddenElementContentContainer = document.getElementById('hidden-radio-select-content');
     const radioSelectContent = document.getElementById('radio-select-content');
@@ -8,7 +8,7 @@ function expand() {
     hiddenElementContentContainer.innerHTML = htmlToSet;
     hiddenElement.style.display = 'flex';
 }
-function closeModal(event) {
+export function closeModal(event) {
     event.preventDefault();
     const hiddenElement = document.querySelector('.hidden-radio-select');
     const hiddenElementContentContainer = document.getElementById('hidden-radio-select-content');

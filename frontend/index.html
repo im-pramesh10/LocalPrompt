@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>LocalPrompt</title>
-    <link rel="stylesheet" href="/static/commons.css">
-    <link rel="stylesheet" href="/static/style.css">
-  </head>
-  <body>
-    <header-component style="width: 100%"></header-component>
-    <div class="hidden-radio-select">
-      <div style="display: flex; position: relative; height: 100%; justify-content: center; align-items: center"> 
-      <div id='hidden-radio-select-content' style="display: flex">
-        
-      </div>
-      <button id="expand-ok-button" style="position: absolute; bottom: 0" onClick="closeModal(event)">Ok</button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>LocalPrompt</title>
+  <link rel="stylesheet" href="/static/commons.css">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header-component style="width: 100%"></header-component>
+  <div class="hidden-radio-select">
+    <div style="display: flex; position: relative; height: 100%; justify-content: center; align-items: center"> 
+      <div id='hidden-radio-select-content' style="display: flex"></div>
+      <button id="expand-ok-button" style="position: absolute; bottom: 0">Ok</button>
     </div>
-    </div>
-    <div class="content">
+  </div>
+  <div class="content">
     <div class="middle-container">
-      <textarea id="prompt" name="prompt" placeholder="your prompt here..." onKeyPress="handleEnter(event)"></textarea></br></br>
-        <button id="send-button" onClick="handleClick()">Send 
-          <div id="spinner"></div>
-        </button>
-      </br></br>
+      <textarea id="prompt" name="prompt" placeholder="your prompt here..."></textarea></br></br>
+      <button id="send-button">Send 
+        <div id="spinner"></div>
+      </button></br></br>
       <div class="response-container-toolbar">
         <span class='response-toolbar-text'>Response Box-[Prompt Response]</span>
       </div>
@@ -33,8 +30,6 @@
       </div>
     </div>
   </div>
-	<script src="/static/webComponents/header.js"></script>
-	<script src="/static/expand.js"></script>
-	<script src="/static/index.js"></script>
-  </body>
+  <script type="module" src="/static/index.js"></script>
+</body>
 </html>
