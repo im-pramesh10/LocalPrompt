@@ -1,8 +1,14 @@
+import { globalState } from "../stateManager/globalState.js";
+
 class ChatComponent extends HTMLElement {
     constructor() {
         super();
         this.loading = false;
         this.conversation_history = [
+            {
+                "role": "system",
+                "content": globalState.getState('systemPrompt')
+            }
             // saved in this format and sent to ollama models to give them context
             // {
             // "role": "user",
@@ -17,6 +23,7 @@ class ChatComponent extends HTMLElement {
             // "content": "how is that different than mie scattering?"
             // }
         ];
+        globalState.subscribe('systemPrompt', (newState)=> this.onSystemPromptChange(newState));
         this.attachShadow({ mode: 'open' });
     }
     connectedCallback() {
@@ -26,6 +33,7 @@ class ChatComponent extends HTMLElement {
                 margin: auto;
                 width: 800px;
                 height: 100%;
+                // border: 1px solid red;
             }
             #messages-list {
                 width: 100%;
@@ -150,6 +158,16 @@ class ChatComponent extends HTMLElement {
 
         this.shadowRoot.getElementById('message').addEventListener('keypress', this.handleEnter.bind(this));
         this.shadowRoot.getElementById('send-button').addEventListener('click', this.handleClick.bind(this));
+    }
+
+    disconnectedCallback() {
+        this.shadowRoot.getElementById('message').removeEventListener('keypress', this.handleEnter.bind(this));
+        this.shadowRoot.getElementById('send-button').removeEventListener('click', this.handleClick.bind(this));
+        globalState.unsubscribe('systemPrompt', this.onSystemPromptChange.bind(this));
+    }
+
+    onSystemPromptChange(newState) {
+        this.conversation_history[0].content = newState;
     }
 
     handleEnter(e) {

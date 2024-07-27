@@ -65,13 +65,38 @@ textarea:focus {
     font-weight: bold;
 }
 .content {
-    display: flex;
-    /* flex: 1 1 auto;  */
+    display: grid;
     justify-content: center;
     align-items: center;
     height: 90%;
     width: 100%;
-    /* border: 0.5px solid white; */
+    gap: 10px; /* Optional: Adds some space between the grid items */
+    grid-template-columns: 1fr 800px 1fr; /* First and third columns take up equal space, second column is 800px */
+    grid-auto-rows: minmax(100px, auto); /* Sets minimum row height and allows rows to grow */
+}
+.content {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 100%;
+    gap: 10px; /* Adds some space between the grid items */
+    grid-template-columns: 1fr 800px 1fr; /* First and third columns take up equal space, second column is 800px */
+    grid-auto-rows: minmax(100px, auto); /* Sets minimum row height and allows rows to grow */
+}
+
+/* Hide first and last columns when viewport width is less than 1200px */
+@media (max-width: 1280px) {
+    .content{
+        grid-template-columns: 100% ;
+    }
+    /* .content:first-child,
+    .content:last-child {
+        display: none;
+    } */
+    .empty-div{
+        display: none;  
+    }
 }
 .spinner {
     display: inline-block;
