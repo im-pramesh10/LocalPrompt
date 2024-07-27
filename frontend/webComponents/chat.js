@@ -21,6 +21,114 @@ class ChatComponent extends HTMLElement {
     }
     connectedCallback() {
         this.shadowRoot.innerHTML = `
+        <style>
+            :host {
+                margin: auto;
+                width: 800px;
+                height: 100%;
+            }
+            #messages-list {
+                width: 100%;
+                height: 80%;
+                overflow-y: auto;
+                display: flex;
+                flex-direction: column-reverse;
+            }
+            #message-box {
+                /* border: 1px solid green; */
+                width: 100%;
+                height: 20%;
+                position: relative;
+            }
+            #message {
+                height: 100%;
+                width: 100%;
+                resize: none;
+            }
+            #send-button {
+                position: absolute;
+                bottom: 3px;
+                right: 3px;
+                background-color: rgb(129, 129, 129);
+                color: rgb(0, 0, 0);
+                font-size: 18px;
+                width: 30px;
+                height: 30px;
+                padding-top: 6px;
+                padding-left: 8px;
+                border-radius: 50%;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                transition: background-color 0.5s ease-in-out;
+            }
+            #send-button:hover {
+                background-color: #c5c5c5;
+            }
+            .message-bubble-container {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+            }
+            .message-bubble {
+                border-radius: 10px;
+                padding: 10px;
+                margin-bottom: 0.4rem;
+                color: white;
+                width: fit-content;
+                max-width: 90%;
+                word-wrap: break-word;
+                white-space: pre-wrap; /* Preserve whitespace and newlines */
+                /* background-color: #2b2b2b; */
+            }
+            .my-message-bubble {
+                background-color: #2f2f2f
+                /* color: black; */
+            }
+            .my-message-bubble-container {
+                flex-direction: row-reverse;
+            }
+            textarea {
+                background-color: #2f2f2f;
+                color: rgb(216, 214, 214);
+                font-size: 16px;
+                padding: 10px;
+                border-radius: 10px;
+                border: none;
+                outline: none;
+                height: 150px;
+                width: 100%;
+                box-sizing: border-box;
+                /* overflow-y: auto; */
+                resize: vertical;
+            }
+            textarea:focus {
+                border: #dadada 2px solid;
+            }
+            @media screen and (max-width: 900px) {
+                :host {
+                    width: 90%; /* Adjust container width for smaller screens */
+                }
+            }
+            .spinner {
+                display: inline-block;
+                border: 0.3rem solid white;
+                border-top: 0.3rem solid #000000;
+                border-radius: 50%;
+                width: 0.5rem;
+                height: 0.5rem;
+                animation: spin 2s linear infinite;
+            }
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+        </style>
                 <div id="messages-list"></div>
                 <div id="spinner"></div>
                 <div id="message-box">
@@ -47,7 +155,7 @@ class ChatComponent extends HTMLElement {
     handleEnter(e) {
         if (e.keyCode === 13 && e.shiftKey === false) {
             e.preventDefault();
-            handleClick();
+            this.handleClick();
         }
     }
 
@@ -57,14 +165,14 @@ class ChatComponent extends HTMLElement {
         if (!message) {
             return;
         }
-        if (loading) {
+        if (this.loading) {
             return;
         }
-        addMessage(message, true); // myMessage = true
+        this.addMessage(message, true); // myMessage = true
         this.conversation_history.push({ "role": "user", "content": message });
         spinner.classList.add('spinner');
         this.loading = true;
-        const api_response = await getResponse(this.conversation_history);
+        const api_response = await this.getResponse(this.conversation_history);
         this.conversation_history.push({ "role": "assistant", "content": api_response });
         this.loading = false;
         spinner.classList.remove('spinner');
@@ -97,15 +205,15 @@ class ChatComponent extends HTMLElement {
             const data = await response.json();
             if (data.error) {
                 alert(data.error);
-                addMessage("Something Went Wrong with ollama model. Make sure it is running and try again", false); // myMessage = false
+                this.addMessage("Something Went Wrong with ollama model. Make sure it is running and try again", false); // myMessage = false
             } else {
-                addMessage(data?.message?.content, false); // myMessage = false
+                this.addMessage(data?.message?.content, false); // myMessage = false
                 return data?.message?.content;
             }
     
         } catch (error) {
             alert(error);
-            addMessage("Something Went Wrong with ollama model. Make sure it is running and try again", false); // myMessage = false
+            this.addMessage("Something Went Wrong with ollama model. Make sure it is running and try again", false); // myMessage = false
         }
     }
 
