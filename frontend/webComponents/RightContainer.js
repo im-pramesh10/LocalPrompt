@@ -12,6 +12,10 @@ class RightContainer extends HTMLElement {
         // globalState.subscribe('groqApiKey', (newState)=> this.update(newState));
     }
 
+    disconnectedCallback() {
+        globalState.unsubscribe('showAPIKey', (newState)=> this.update(newState));
+        // globalState.unsubscribe('groqApiKey', (newState)=> this.update(newState));
+    }
     update(showAPIKey) {
         const passwordInput = this.shadowRoot.getElementById('api-key');
         passwordInput.type = showAPIKey ? 'text' : 'password';

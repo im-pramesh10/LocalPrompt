@@ -218,7 +218,7 @@ class ChatComponent extends HTMLElement {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ "messages": conversation_history })
+                body: JSON.stringify({ "messages": conversation_history, "type":globalState.getState('modelProvider') })
             });
             const data = await response.json();
             if (data.error) {

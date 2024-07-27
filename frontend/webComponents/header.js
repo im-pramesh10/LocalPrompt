@@ -3,13 +3,26 @@ import { globalState } from "../stateManager/globalState.js";
 class HeaderComponent extends HTMLElement {
     constructor() {
         super();
-        globalState.subscribe('activePage', (newState)=> this.updateNavElements(newState));
+        globalState.subscribe('activePage', (newState) => this.updateNavElements(newState));
+        globalState.subscribe('modelProvider', (newProvider) => this.handleModelProviderChange(newProvider));
         this.render();
+        this.loadModelOptions(); // Fetch model options after initial render
     }
 
     disconnectedCallback() {
-        globalState.unsubscribe('activePage', (newState)=> this.updateNavElements(newState));
+        globalState.unsubscribe('activePage', (newState) => this.updateNavElements(newState));
+        globalState.unsubscribe('modelProvider', (newProvider) => this.handleModelProviderChange(newProvider));
     }
+
+    async loadModelOptions() {
+        const modelOptionsContainer = this.querySelector('#models');
+        modelOptionsContainer.innerHTML = await this.getModelOptions();
+    }
+
+    handleModelProviderChange(newProvider) {
+        this.loadModelOptions(); // Fetch new model options when modelProvider changes
+    }
+
     render() {
         this.innerHTML = `
         <style>
@@ -30,7 +43,7 @@ class HeaderComponent extends HTMLElement {
                         </div>
                         <div class="model-select-container">
                             <select id="models" name="models">
-                                ${this.getModelOptions()}
+                                <option>Loading...</option>
                             </select>
                         </div>
                     </div>
@@ -41,12 +54,13 @@ class HeaderComponent extends HTMLElement {
 
         document.getElementById('nav-home').addEventListener('click', this.onNavHomeClick.bind(this));
         document.getElementById('nav-chat').addEventListener('click', this.onNavChatClick.bind(this));
+        this.addRadioEventListeners();
     }
 
-    onNavHomeClick () {
+    onNavHomeClick() {
         globalState.setState('activePage', 'home');
     }
-    onNavChatClick () {
+    onNavChatClick() {
         globalState.setState('activePage', 'chat');
     }
 
@@ -56,6 +70,7 @@ class HeaderComponent extends HTMLElement {
         document.getElementById('nav-home').className = homeClass;
         document.getElementById('nav-chat').className = chatClass;
     }
+
     getRadioButtons() {
         return `
             <label><input type="radio" name="using" value="ollama" checked>Ollama</label>
@@ -64,12 +79,41 @@ class HeaderComponent extends HTMLElement {
         `;
     }
 
-    getModelOptions() {
-        return `
-            <option value="1">llama3.1 80b</option>
-            <option value="2">phi2:latest</option>
-            <option value="3">mixtral-dolphin</option>
-        `;
+    addRadioEventListeners() {
+        const radios = this.querySelectorAll('input[name="using"]');
+        radios.forEach(radio => {
+            radio.addEventListener('change', (event) => {
+                if (event.target.checked) {
+                    globalState.setState('modelProvider', event.target.value);
+                }
+            });
+        });
+    }
+
+    async getModelOptions() {
+        let payload = { type: globalState.getState('modelProvider') }
+        if (globalState.getState('modelProvider') === 'groq') {
+            payload['api_key'] = globalState.getState('groqApiKey');
+        }
+        try {
+            const response = await fetch('http://localhost:8000/models', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+            const data = await response.json();
+            if (data && data.data) {
+                return data.data.map((option) => `<option value="${option}">${option}</option>`).join('');
+            } else {
+                return `<option>No models available</option>`;
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            return `<option>Error loading models</option>`;
+        }
     }
 }
+
 export default HeaderComponent;

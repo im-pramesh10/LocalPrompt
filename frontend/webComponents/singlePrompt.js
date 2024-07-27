@@ -1,3 +1,4 @@
+import { globalState } from "../stateManager/globalState.js";
 class SinglePrompt extends HTMLElement {
     constructor() {
         super();
@@ -38,7 +39,7 @@ class SinglePrompt extends HTMLElement {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({"prompt": prompt})
+                body: JSON.stringify({"prompt": prompt, "type":globalState.getState('modelProvider') })
             });
             const data = await response.json();
             if (data.error) {
