@@ -12,18 +12,37 @@ customElements.define('chat-component', ChatComponent);
 customElements.define('system-prompt', SystemPrompt);
 
 globalState.subscribe('activePage', (newState) => {
-    if (newState === 'home') {
-        const content = document.getElementsByClassName('content')[0];
-        content.innerHTML = `<div class="empty-div"></div>
-  <single-prompt></single-prompt>
-    <div class="empty-div"></div>`
-    } else if (newState === 'chat') {
-        const content = document.getElementsByClassName('content')[0];
-        content.innerHTML = `<div class="empty-div"></div>
-         <chat-component></chat-component>
-        <system-prompt></system-prompt>`
+    let content = document.getElementsByClassName('content')[0];
+
+    switch(newState) {
+        case 'home':
+            updateContentForHome(content);
+            break;
+        case 'chat':
+            updateContentForChat(content);
+            break;
+        default:
+            console.warn(`Unknown state: ${newState}`);
+            return;
     }
-})
+});
+
+function updateContentForHome(content) {
+    content.innerHTML = `
+        <div class="empty-div"></div>
+        <single-prompt></single-prompt>
+        <div class="empty-div"></div>
+    `;
+}
+
+function updateContentForChat(content) {
+    content.innerHTML = `
+        <div class="empty-div"></div>
+        <chat-component></chat-component>
+        <system-prompt></system-prompt>
+    `;
+}
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
