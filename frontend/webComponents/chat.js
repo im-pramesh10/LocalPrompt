@@ -29,6 +29,29 @@ class ChatComponent extends HTMLElement {
     connectedCallback() {
         this.shadowRoot.innerHTML = `
         <style>
+        ::-webkit-scrollbar {
+                width: 8px; /* Adjust the width as needed */
+                height: 8px; /* Adjust the height as needed */
+            }
+
+                ::-webkit-scrollbar-thumb {
+                background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent color */
+            }
+
+                ::-webkit-scrollbar-track {
+                background: rgba(241, 241, 241, 0.5); /* Semi-transparent track */
+            }
+
+                /* For Firefox */
+                * {
+                scrollbar-width: thin;
+                scrollbar-color: rgba(0, 0, 0, 0.5) rgba(241, 241, 241, 0.5); /* Semi-transparent thumb and track */
+            }
+
+                /* For Internet Explorer and Edge */
+            body {
+                -ms-overflow-style: -ms-autohiding-scrollbar;
+            }
             :host {
                 margin: auto;
                 width: 800px;
