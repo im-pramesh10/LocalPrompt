@@ -101,8 +101,8 @@ class RightContainer extends HTMLElement {
             </br>
             </br>
             <div style="display: flex; align-items: center; justify-content: space-between">
-            <input style="width: 90%" type=${globalState.getState('api-key')?'text':'password'} id="api-key" name="api-key" placeholder="Enter your API key here" value="${globalState.getState('groqApiKey')}"></input>
-            <span id="show-api-key" style="cursor: pointer">${globalState.getState('api-key')?'hide':'show'}</span>
+            <input style="width: 90%" type=${globalState.getState('showAPIKey')?'text':'password'} id="api-key" name="api-key" placeholder="Enter your API key here" value="${globalState.getState('groqApiKey')}"></input>
+            <span id="show-api-key" style="cursor: pointer">${globalState.getState('showAPIKey')?'hide':'show'}</span>
             </div>
             </br>
             <button id="save-button">save</button>
@@ -115,8 +115,8 @@ class RightContainer extends HTMLElement {
             </br>
             </br>
             <div style="display: flex; align-items: center; justify-content: space-between">
-            <input style="width: 90%" type=${globalState.getState('api-key')?'text':'password'} id="api-key" name="api-key" placeholder="Enter your API key here" value="${globalState.getState('groqApiKey')}"></input>
-            <span id="show-api-key" style="cursor: pointer">${globalState.getState('api-key')?'hide':'show'}</span>
+            <input style="width: 90%" type=${globalState.getState('showAPIKey')?'text':'password'} id="api-key" name="api-key" placeholder="Enter your API key here" value="${globalState.getState('groqApiKey')}"></input>
+            <span id="show-api-key" style="cursor: pointer">${globalState.getState('showAPIKey')?'hide':'show'}</span>
             </div>
             </br>
             <button id="save-button">save</button>
