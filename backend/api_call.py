@@ -46,7 +46,6 @@ async def ollama_groq_chat_api(type, messages, api_key=None, prompt=None, model=
         try:
             async with session.post(url=base_url, headers=headers, json=json_body) as response:
                 response_data = await response.json()
-                print(response_data)
                 if prompt:
                     return {
                         "response": response_data["choices"][0]["message"]["content"],
