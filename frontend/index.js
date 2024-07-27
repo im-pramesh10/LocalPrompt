@@ -3,13 +3,12 @@ import {globalState} from "./stateManager/globalState.js";
 import ChatComponent from "./webComponents/chat.js";
 import HeaderComponent from "./webComponents/header.js";
 import SinglePrompt from "./webComponents/singlePrompt.js";
-import SystemPrompt from "./webComponents/systemPrompt.js";
-
+import RightContainer from "./webComponents/RightContainer.js";
 
 customElements.define('header-component', HeaderComponent);
 customElements.define('single-prompt', SinglePrompt);
 customElements.define('chat-component', ChatComponent);
-customElements.define('system-prompt', SystemPrompt);
+customElements.define('right-container', RightContainer);
 
 globalState.subscribe('activePage', (newState) => {
     let content = document.getElementsByClassName('content')[0];
@@ -31,7 +30,7 @@ function updateContentForHome(content) {
     content.innerHTML = `
         <div class="empty-div"></div>
         <single-prompt></single-prompt>
-        <div class="empty-div"></div>
+        <right-container></right-container>
     `;
 }
 
@@ -39,7 +38,7 @@ function updateContentForChat(content) {
     content.innerHTML = `
         <div class="empty-div"></div>
         <chat-component></chat-component>
-        <system-prompt></system-prompt>
+        <right-container></right-container>
     `;
 }
 
