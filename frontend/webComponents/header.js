@@ -8,7 +8,6 @@ class HeaderComponent extends HTMLElement {
     }
 
     render() {
-        // const navElements = this.getNavElements();
         this.innerHTML = `
         <style>
             #nav-home, #nav-chat {
