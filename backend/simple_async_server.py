@@ -2,7 +2,7 @@ import asyncio
 from aiohttp import web
 from api_call import ollama_api_call, custom_model_api, ollama_groq_chat_api
 from get_models import get_models
-from settings import USE_CUSTOM_MODEL, DEFAULT_PORT
+from settings import DEFAULT_PORT
 
 
 async def post_prompt(request):
@@ -10,10 +10,10 @@ async def post_prompt(request):
     if incoming_data.get("type", None) == "custom":
         response_data = await custom_model_api(incoming_data["prompt"])
     elif incoming_data.get("type", None) == "ollama":
-        response_data = await ollama_api_call(incoming_data["prompt"])
+        response_data = await ollama_api_call(prompt=incoming_data["prompt"], model=incoming_data.get("model", None))
     elif incoming_data.get("type", None) == "groq":
         response_data = await ollama_groq_chat_api(
-            incoming_data["type"], incoming_data["messages"], incoming_data.get("api_key", None), prompt=True
+            type=incoming_data["type"], messages=incoming_data["prompt"], api_key=incoming_data.get("api_key", None), prompt=True, model=incoming_data.get('model', None)
         )
     else:
         response_data = {"response": "bad request", "status": 400}
@@ -24,7 +24,7 @@ async def post_chat(request):
     incoming_data = await request.json()
     if incoming_data.get("type", None) == "groq" or incoming_data.get("type", None) == "ollama":
         response_data = await ollama_groq_chat_api(
-            incoming_data["type"], incoming_data["messages"], incoming_data.get("api_key", None)
+            type=incoming_data["type"], messages=incoming_data["messages"], api_key=incoming_data.get("api_key", None), model=incoming_data.get('model', None)
         )
     else:
         response_data = {"response": "bad request", "status": 400}
