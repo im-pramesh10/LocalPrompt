@@ -1,8 +1,10 @@
 import { expand, closeModal } from "./expand.js";
 import HeaderComponent from "./webComponents/header.js";
+import SinglePrompt from "./webComponents/singlePrompt.js";
 
 // Ensure that HeaderComponent is registered
 customElements.define('header-component', HeaderComponent);
+customElements.define('single-prompt', SinglePrompt);
 
 let loading = false; // loading state for prompt
 

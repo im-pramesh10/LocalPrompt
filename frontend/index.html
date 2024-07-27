@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>LocalPrompt</title>
   <link rel="stylesheet" href="/static/commons.css">
-  <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
   <header-component style="width: 100%"></header-component>
@@ -17,19 +16,7 @@
     </div>
   </div>
   <div class="content">
-    <div class="middle-container">
-      <textarea id="prompt" name="prompt" placeholder="your prompt here..."></textarea></br></br>
-      <button id="send-button">Send 
-        <div id="spinner"></div>
-      </button></br></br>
-      <div class="response-container-toolbar">
-        <span class='response-toolbar-text'>Response Box-[Prompt Response]</span>
-      </div>
-      <div class="response-container" id="response-container">
-        <p class="response" id="response">Your prompt's response will appear here...</p>
-      </div>
-    </div>
-  </div>
+  <single-prompt></single-prompt>
   <script type="module" src="/static/index.js"></script>
 </body>
 </html>
