@@ -1,4 +1,3 @@
-import {expand, closeModal} from "./expand.js";
 import {globalState} from "./stateManager/globalState.js";
 import ChatComponent from "./webComponents/chat.js";
 import HeaderComponent from "./webComponents/header.js";
@@ -44,7 +43,7 @@ function updateContentForChat(content) {
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('expand-ok-button').addEventListener('click', closeModal);
-    document.getElementById('expand-button').addEventListener('click', expand);
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//     document.getElementById('expand-ok-button').addEventListener('click', closeModal);
+//     document.getElementById('expand-button').addEventListener('click', expand);
+// })

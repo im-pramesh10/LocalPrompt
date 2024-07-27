@@ -47,7 +47,7 @@ class HeaderComponent extends HTMLElement {
                             </select>
                         </div>
                     </div>
-                    <div id="expand-button" class="small-screen-last-header" onClick='expand()'>Expand +</div>
+                    <!--<div id="expand-button" class="small-screen-last-header" onClick='expand()'>Expand +</div>-->
                 </div>
             </header>
         `;

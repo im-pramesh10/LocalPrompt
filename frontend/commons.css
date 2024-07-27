@@ -214,7 +214,7 @@ button:hover {
 .large-screen-last-header {
     display: flex;
 }
-.small-screen-last-header {
+/* .small-screen-last-header {
     display: none;
     cursor: pointer;
     background-color: #464545;
@@ -227,7 +227,7 @@ button:hover {
 }
 .small-screen-last-header:hover {
     background-color: #2f2f2f;
-}
+} */
 
 @keyframes spin {
     0% {
@@ -238,16 +238,20 @@ button:hover {
     }
 }
 
-@media screen and (max-width: 1280px) {
+/* @media screen and (max-width: 1280px) {
     .large-screen-last-header {
         display: none;
     }
     .small-screen-last-header {
         display: block;
     }
-}
-/* @media screen and (min-width: 1280px) {
-    .hidden-radio-select {
-        display: none;
-    }
 } */
+ @media screen and (min-width: 1280px) {
+    /* .hidden-radio-select {
+        display: none;
+    } */
+     .header-item:last-child {
+        flex-direction: column;
+        height: fit-content;
+     }
+} 
