@@ -1,16 +1,27 @@
+import { globalState } from "../stateManager/globalState.js";
+
 class HeaderComponent extends HTMLElement {
     constructor() {
         super();
+        globalState.subscribe('activePage', (newState)=> this.updateNavElements(newState));
         this.render();
     }
 
+    disconnectedCallback() {
+        globalState.unsubscribe('activePage', (newState)=> this.updateNavElements(newState));
+    }
     render() {
-        const navElements = this.getNavElements();
         this.innerHTML = `
+        <style>
+            #nav-home, #nav-chat {
+                cursor: pointer;
+            }
+        </style>
             <header>
                 <label id="label" class="label header-item">LocalPrompt</label></br></br>
                 <nav class="header-item">
-                    ${navElements}
+                    <a id="nav-home" class="active-nav-button">Home</a>
+                    <a id="nav-chat" class="nav-button-class">Chat</a>
                 </nav>
                 <div class="header-item">
                     <div id="radio-select-content" class='large-screen-last-header'>
@@ -27,18 +38,24 @@ class HeaderComponent extends HTMLElement {
                 </div>
             </header>
         `;
+
+        document.getElementById('nav-home').addEventListener('click', this.onNavHomeClick.bind(this));
+        document.getElementById('nav-chat').addEventListener('click', this.onNavChatClick.bind(this));
     }
 
-    getNavElements() {
-        const homeClass = location.pathname === '/' ? 'active-nav-button' : 'nav-button-class';
-        const chatClass = location.pathname === '/chat' ? 'active-nav-button' : 'nav-button-class';
-
-        return `
-            <a class="${homeClass}" href="/">Home</a>
-            <a class="${chatClass}" href="/chat">Chat</a>
-        `;
+    onNavHomeClick () {
+        globalState.setState('activePage', 'home');
+    }
+    onNavChatClick () {
+        globalState.setState('activePage', 'chat');
     }
 
+    updateNavElements(activePage) {
+        const homeClass = activePage === 'home' ? 'active-nav-button' : 'nav-button-class';
+        const chatClass = activePage === 'chat' ? 'active-nav-button' : 'nav-button-class';
+        document.getElementById('nav-home').className = homeClass;
+        document.getElementById('nav-chat').className = chatClass;
+    }
     getRadioButtons() {
         return `
             <label><input type="radio" name="using" value="ollama" checked>Ollama</label>
