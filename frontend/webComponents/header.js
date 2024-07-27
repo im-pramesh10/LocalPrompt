@@ -7,6 +7,9 @@ class HeaderComponent extends HTMLElement {
         this.render();
     }
 
+    disconnectedCallback() {
+        globalState.unsubscribe('activePage', (newState)=> this.updateNavElements(newState));
+    }
     render() {
         this.innerHTML = `
         <style>
