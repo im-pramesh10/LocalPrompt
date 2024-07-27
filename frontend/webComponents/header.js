@@ -1,4 +1,4 @@
-import { globalState } from "../stateManager/globalState.js";
+import {globalState} from "../stateManager/globalState.js";
 
 class HeaderComponent extends HTMLElement {
     constructor() {
@@ -6,6 +6,7 @@ class HeaderComponent extends HTMLElement {
         globalState.subscribe('activePage', (newState) => this.updateNavElements(newState));
         globalState.subscribe('modelProvider', (newProvider) => this.handleModelProviderChange(newProvider));
         this.render();
+        this.addModelSelectEventListener();
         this.loadModelOptions(); // Fetch model options after initial render
     }
 
@@ -16,11 +17,25 @@ class HeaderComponent extends HTMLElement {
 
     async loadModelOptions() {
         const modelOptionsContainer = this.querySelector('#models');
-        modelOptionsContainer.innerHTML = await this.getModelOptions();
+        const optionsHTML = await this.getModelOptions();
+        modelOptionsContainer.innerHTML = optionsHTML;
+
+        // Set the first model as the selected model in globalState
+        const firstOption = modelOptionsContainer.querySelector('option');
+        if (firstOption) {
+            globalState.setState('model', firstOption.value);
+        }
     }
 
     handleModelProviderChange(newProvider) {
-        this.loadModelOptions(); // Fetch new model options when modelProvider changes
+        this.loadModelOptions();
+        // Fetch new model options when modelProvider changes
+        // Set the selected model to the first option in the list
+        const modelSelect = this.querySelector('#models');
+        const firstOption = modelSelect.querySelector('option');
+        if (firstOption) {
+            globalState.setState('model', firstOption.value);
+        }
     }
 
     render() {
@@ -55,6 +70,13 @@ class HeaderComponent extends HTMLElement {
         document.getElementById('nav-home').addEventListener('click', this.onNavHomeClick.bind(this));
         document.getElementById('nav-chat').addEventListener('click', this.onNavChatClick.bind(this));
         this.addRadioEventListeners();
+        this.addModelSelectEventListener();
+    }
+    addModelSelectEventListener() {
+        const modelSelect = this.querySelector('#models');
+        modelSelect.addEventListener('change', (event) => {
+            globalState.setState('model', event.target.value);
+        });
     }
 
     onNavHomeClick() {
@@ -91,7 +113,9 @@ class HeaderComponent extends HTMLElement {
     }
 
     async getModelOptions() {
-        let payload = { type: globalState.getState('modelProvider') }
+        let payload = {
+            type: globalState.getState('modelProvider'),
+        }
         if (globalState.getState('modelProvider') === 'groq') {
             payload['api_key'] = globalState.getState('groqApiKey');
         }

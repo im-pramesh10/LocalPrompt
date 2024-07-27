@@ -33,13 +33,20 @@ class SinglePrompt extends HTMLElement {
         }
         spinner.classList.add('spinner');
         this.loading = true;
+        let payload = {
+            prompt: prompt, type:globalState.getState('modelProvider'),
+            model: globalState.getState('model')
+        }
+        if (globalState.getState('modelProvider') === 'groq') {
+            payload['api_key'] = globalState.getState('groqApiKey');
+        }
         try {
             const response = await fetch('/prompt', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({"prompt": prompt, "type":globalState.getState('modelProvider') })
+                body: JSON.stringify(payload)
             });
             const data = await response.json();
             if (data.error) {

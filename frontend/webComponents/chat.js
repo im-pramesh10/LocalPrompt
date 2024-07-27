@@ -1,4 +1,4 @@
-import { globalState } from "../stateManager/globalState.js";
+import {globalState} from "../stateManager/globalState.js";
 
 class ChatComponent extends HTMLElement {
     constructor() {
@@ -23,8 +23,8 @@ class ChatComponent extends HTMLElement {
             // "content": "how is that different than mie scattering?"
             // }
         ];
-        globalState.subscribe('systemPrompt', (newState)=> this.onSystemPromptChange(newState));
-        this.attachShadow({ mode: 'open' });
+        globalState.subscribe('systemPrompt', (newState) => this.onSystemPromptChange(newState));
+        this.attachShadow({mode: 'open'});
     }
     connectedCallback() {
         this.shadowRoot.innerHTML = `
@@ -180,18 +180,18 @@ class ChatComponent extends HTMLElement {
     async handleClick() {
         const message = this.shadowRoot.getElementById('message').value;
         const spinner = this.shadowRoot.getElementById('spinner');
-        if (!message) {
+        if (! message) {
             return;
         }
         if (this.loading) {
             return;
         }
         this.addMessage(message, true); // myMessage = true
-        this.conversation_history.push({ "role": "user", "content": message });
+        this.conversation_history.push({"role": "user", "content": message});
         spinner.classList.add('spinner');
         this.loading = true;
         const api_response = await this.getResponse(this.conversation_history);
-        this.conversation_history.push({ "role": "assistant", "content": api_response });
+        this.conversation_history.push({"role": "assistant", "content": api_response});
         this.loading = false;
         spinner.classList.remove('spinner');
     }
@@ -212,23 +212,31 @@ class ChatComponent extends HTMLElement {
     }
 
     async getResponse(conversation_history) {
+        let payload = {
+            "messages": conversation_history,
+            type: globalState.getState('modelProvider'),
+            model: globalState.getState('model')
+        }
+        if (globalState.getState('modelProvider') === 'groq') {
+            payload['api_key'] = globalState.getState('groqApiKey');
+        }
         try {
             const response = await fetch('/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ "messages": conversation_history, "type":globalState.getState('modelProvider') })
+                body: JSON.stringify(payload)
             });
             const data = await response.json();
             if (data.error) {
                 alert(data.error);
                 this.addMessage("Something Went Wrong with ollama model. Make sure it is running and try again", false); // myMessage = false
             } else {
-                this.addMessage(data?.message?.content, false); // myMessage = false
-                return data?.message?.content;
+                this.addMessage(data ?. message ?. content, false); // myMessage = false
+                return data ?. message ?. content;
             }
-    
+
         } catch (error) {
             alert(error);
             this.addMessage("Something Went Wrong with ollama model. Make sure it is running and try again", false); // myMessage = false
