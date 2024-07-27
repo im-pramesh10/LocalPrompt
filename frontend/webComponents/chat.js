@@ -224,9 +224,15 @@ class ChatComponent extends HTMLElement {
         messageBubble.classList.add('message-bubble-container');
         if (myMessage) {
             messageBubble.classList.add('my-message-bubble-container');
-            messageBubble.innerHTML = `<div class="message-bubble my-message-bubble">${message}</div>`;
+            const messageBubbleInnerhtml = document.createElement('div');
+            messageBubbleInnerhtml.className ='message-bubble my-message-bubble';
+            messageBubbleInnerhtml.innerText = message
+            messageBubble.appendChild(messageBubbleInnerhtml);
         } else {
-            messageBubble.innerHTML = `<div class="message-bubble">${message}</div>`;
+            const messageBubbleInnerhtml = document.createElement('div');
+            messageBubbleInnerhtml.className = 'message-bubble';
+            messageBubbleInnerhtml.innerText = message
+            messageBubble.appendChild(messageBubbleInnerhtml);
         }
         const messagesList = this.shadowRoot.getElementById('messages-list');
         messagesList.insertBefore(messageBubble, messagesList.firstChild);
