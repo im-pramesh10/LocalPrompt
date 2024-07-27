@@ -1,10 +1,12 @@
 # LocalPrompt
 
 ## Description
+This project is a local client-server program that enables seamless interaction between Ollama and Groq using their APIs, as well as custom defined functions for custom Large Language Models (LLMs). The program provides a simple and efficient way to integrate Ollama and Groq's language models and computing platforms, allowing you to leverage the strengths of both platforms to build powerful NLP applications.
 
-This project demonstrates a simple and lightweight client-server program for interfacing with Large Language Models (LLMs), using Ollama as an example. The frontend is built with basic HTML, CSS, and vanilla JavaScript, while the backend is an asynchronous web server created using asyncio and aiohttp in python.
+This project demonstrates a simple and lightweight client-server program for interfacing with Large Language Models (LLMs) on your local machine using ollama and also interfacing groq using groq api.
 
-![LocalPrompt Screenshot](readme-images/demo.gif)
+![LocalPrompt Screenshot 1](readme-images/image2.png)
+![LocalPrompt Screenshot 2](readme-images/image1.png)
 
 ## Prerequisites
 
@@ -69,17 +71,12 @@ python simple_async_server.py
 ```
 
 - navigate to http://localhost:8000 to use the program
+- you can change your default port from setting.py
 - Ensure Ollama is running in the background and the Phi model is pulled. This example uses the Phi model.
 
 ## Modifying for Other LLMs
 ### For single prompt
 To connect LocalPrompt setup with a different LLM using Ollama:
-
-- Set the OLLAMA_MODEL to different model in setting.py
-
-To use custom LLMs or your own LLM api
-
-- Set USE_CUSTOM_MODEL to True in settings.py file
 - Write your code inside custom_model_api function inside api_call.py file
 - Return your response in the following format:
 
