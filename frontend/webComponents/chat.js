@@ -110,3 +110,5 @@ class ChatComponent extends HTMLElement {
     }
 
 }
+
+export default ChatComponent;
