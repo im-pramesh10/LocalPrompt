@@ -1,7 +1,7 @@
 # LocalPrompt
 
 ## Description
-This project is a local client-server program that enables seamless interaction between Ollama and Groq using their APIs, as well as custom defined functions for custom Large Language Models (LLMs). The program provides a simple and efficient way to integrate Ollama and Groq's language models and computing platforms, allowing you to leverage the strengths of both platforms to build powerful NLP applications.
+This project is a local client-server program that enables seamless interaction between Ollama and Groq using their APIs, as well as custom defined functions for custom Large Language Models (LLMs). The program provides a simple and efficient way to integrate Ollama and Groq's language models and computing platforms, allowing you to leverage the strengths of both platforms.
 
 This project demonstrates a simple and lightweight client-server program for interfacing with Large Language Models (LLMs) on your local machine using ollama and also interfacing groq using groq api.
 
